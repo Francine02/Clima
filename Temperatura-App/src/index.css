@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+}
+
 #theme {
   background-color: #0b0b0bf4;
   width: 100%;
