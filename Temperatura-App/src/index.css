@@ -30,6 +30,11 @@
 #content {
   color: white;
 
+  & #clima {
+    width: 15rem;
+    height: 15rem;
+  }
+
   & h2 {
     font-size: 4rem;
   }

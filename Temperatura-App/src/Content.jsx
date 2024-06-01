@@ -1,20 +1,21 @@
-/*const apiKey = "bebd7204967fa82755ea0ff691d01fc0"*/
+import sunIcon from "./img/sol.png";
 
-export function Content () {
+
+export function Content (props) {
     return (
         <>
-        <div className="row px-5 pt-5 pb-5" id="content">
+        <div className="row px-5 pt-5 pb-4" id="content">
             <div className="col-6 px-md-5 d-flex justify-content-center">
                 <div>
-                    <h1>Brasil</h1>
+                    <h1 id="title"></h1>
                     <p><img src="https://img.icons8.com/?size=100&id=17768&format=png&color=000000" alt="local"/>Local</p>
 
                     <h2>31°C</h2>
                 </div>
             </div>
             
-            <div className="col-6 px-md-5 d-flex justify-content-center">
-                <img src="https://img.icons8.com/?size=100&id=0yCmzDVSxZ7O&format=png&color=000000" alt="clima" className="img-fluid"/>
+            <div className="col-6 d-flex justify-content-center">
+                <img src={sunIcon} alt="clima" className="img-fluid" id="clima"/>
             </div>
         </div>
 
