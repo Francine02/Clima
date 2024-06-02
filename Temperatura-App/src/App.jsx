@@ -1,7 +1,6 @@
 import './index.css';
 import './media.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './script'
 import { Nav } from './Nav';
 import { Content } from './Content';
 
