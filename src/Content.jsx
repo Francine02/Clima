@@ -1,4 +1,12 @@
-import sunIcon from "./img/sol.png";
+import clearSky from "./img/ceulimpo.png"
+import fewClouds from "./img/nublado.png"
+import clouds from "./img/nuvens.png"
+import cloudDark from "./img/nuvem.png"
+import showerRain from "./img/chuva.png"
+import rain from "./img/chuvisco.png"
+import thunderstorm from "./img/tempestade.png"
+import snow from "./img/neve.png"
+import mist from "./img/neblina.png"
 import React, { useState, useEffect } from 'react';
 
 export function Content () {
@@ -34,11 +42,46 @@ export function Content () {
         };
     }, [search]);//Adiciona o ouvinte de eventos keypress quando o componente é montado e o remove quando é desmontado.
 
+    function icon () {
+        const weatherIcon = weatherData.weather[0].description.toLowerCase()
+        
+        switch (weatherIcon) {
+            case "céu limpo":
+                return clearSky
+
+            case "chuva moderada":
+                return showerRain;
+
+            case "nublado":
+                return cloudDark
+
+            case "algumas nuvens":
+                return fewClouds;
+
+            case "nuvens dispersas":
+                return clouds
+            
+            case "neve":
+                return snow;
+
+            case "chuva":
+                return rain
+
+            case "trovoada":
+                return thunderstorm;
+                
+            case "névoa":
+                return mist;
+
+            default:
+                return brokenClouds;
+        }
+    }
     return (
-        <div style={{ display: weatherData ? 'block' : 'none' }}>
-            <div className="row px-5 pt-5 pb-4" id="content">
+        <div className="container" style={{ display: weatherData ? 'block' : 'none' }}>
+            <div className="row px-5 pt-3 pb-5" id="content">
                 <div className="col-6 px-md-5 d-flex justify-content-center">
-                    <div>
+                    <div className="pt-4">
                         <h1 id="title">{weatherData ? weatherData.name : ""}</h1>
                         <p><img src="https://img.icons8.com/?size=100&id=17768&format=png&color=000000" alt="local"/>{weatherData ? weatherData.sys.country : ""}</p>
 
@@ -46,8 +89,9 @@ export function Content () {
                     </div>
                 </div>
                 
-                <div className="col-6 d-flex justify-content-center">
-                    <img src={sunIcon} alt="clima" className="img-fluid" id="clima"/>
+                <div className="col-6 px-md-5 d-flex justify-content-center">
+                    <img src={weatherData ? icon() : ""} alt="clima" className="img-fluid" id="clima"/>
+                    
                 </div>
             </div>
 
