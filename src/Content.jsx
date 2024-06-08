@@ -88,9 +88,9 @@ export function Content () {
 
     return (
         <div className="container" style={{ display: weatherData ? 'block' : 'none' }}>
-            <div className="row px-lg-5 px-1 pt-3 pb-5" id="content">
-                <div className="col-6 px-lg-5 px-3 d-flex justify-content-start">
-                    <div className="pt-4">
+            <div className="row px-lg-5 pt-lg-3 pt-5 pb-5 mt-md-0 mt-5" id="content">
+                <div className="col-lg-6 col-8 pl-lg-5 pl-1">
+                    <div className="pt-lg-4">
                         <h1 id="title">{weatherData ? weatherData.name : ""}</h1>
                         <p><img src="https://img.icons8.com/?size=100&id=17768&format=png&color=000000" alt="local"/>{weatherData ? weatherData.sys.country : ""}</p>
 
@@ -98,8 +98,8 @@ export function Content () {
                     </div>
                 </div>
                 
-                <div className="col-6 px-lg-5 px-3 d-flex justify-content-end">
-                    <img src={weatherData ? icon() : ""} alt="clima" className="img-fluid" id="clima"/>
+                <div className="col-lg-6 col-4 pr-lg-5 pr-1 d-flex justify-content-end">
+                    <img src={weatherData ? icon() : ""} alt="clima"  id="clima"/>
                     
                 </div>
             </div>
