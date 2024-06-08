@@ -8,25 +8,29 @@ import thunderstorm from "./img/tempestade.png"
 import snow from "./img/neve.png"
 import mist from "./img/neblina.png"
 import React, { useState, useEffect } from 'react';
+import { Error } from "./Error"
 
 export function Content () {
-    const [weatherData, setWeatherData] = useState(null);
+    const [weatherData, setWeatherData] = useState(null)
+    const [hasError, setError] = useState(false)
     const apiKey = "bebd7204967fa82755ea0ff691d01fc0"
 
     async function search () {
         const searchInput = document.getElementById("search")
-        const searchValue = searchInput.value.trim();
-        if (searchValue === "") return; 
+        const searchValue = searchInput.value.trim()
+        if (searchValue === "") return
         try {
             const apiResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${apiKey}&units=metric&lang=pt_br`);
             if (!apiResponse.ok) {
-                throw new Error(`Error: ${apiResponse.statusText}`);
+                throw new Error(`Error: ${apiResponse.statusText}`)
             }
-            const apiFind = await apiResponse.json();
-            setWeatherData(apiFind);
+            const apiFind = await apiResponse.json()
+            setWeatherData(apiFind)
             console.log(apiFind)
+            setError(false)
         } catch (error) {
-            console.error("Erro ao buscar dados da API", error);
+            console.error("Erro ao buscar dados da API", error)
+            setError(true)
         }
     }
 
@@ -40,7 +44,7 @@ export function Content () {
         return () => {
             document.removeEventListener("keypress", handleKeyPress);
         };
-    }, [search]);//Adiciona o ouvinte de eventos keypress quando o componente é montado e o remove quando é desmontado.
+    }, [search])//Adiciona o ouvinte de eventos keypress quando o componente é montado e o remove quando é desmontado.
 
     function icon () {
         const weatherIcon = weatherData.weather[0].description.toLowerCase()
@@ -77,6 +81,11 @@ export function Content () {
                 return brokenClouds;
         }
     }
+
+    if (hasError) {
+        return <Error />;
+    }
+
     return (
         <div className="container" style={{ display: weatherData ? 'block' : 'none' }}>
             <div className="row px-lg-5 px-1 pt-3 pb-5" id="content">
